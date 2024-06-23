@@ -1,0 +1,2 @@
+venv
+# Ignore only the models.keras file inside the models folder
