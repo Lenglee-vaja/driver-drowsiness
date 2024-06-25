@@ -267,7 +267,7 @@ async def retrieve_logs():
     return log_list  # Return 'log_list' instead of 'logs'
 
 async def retrieve_log(user_id: str) -> dict:
-    print(user_id)
-    log = await logs_collection.find_one({"user_id": ObjectId(user_id)})
-    if log:
-        return logs_helper(log)
+    log_list = [] 
+    async for log in logs_collection.find({"user_id": ObjectId(user_id)}):
+        log_list.append(logs_helper(log))
+    return log_list

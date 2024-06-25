@@ -77,9 +77,9 @@ async def retrieve_many_logs(payload: dict = Depends(verify_jwt_token_and_role))
 
 @router.get("/log/{id}", response_description="log retrieved")
 async def retrieve_one_log(id, payload: dict = Depends(verify_jwt_token)):
-    log = await retrieve_log(id)
-    if log:
-        return ResponseModel(log, "SUCCESSFULLY")
+    logs = await retrieve_log(id)
+    if logs:
+        return ResponseModels(logs, "SUCCESSFULLY")
     return ErrorResponseModel("ERROR", 404, "STUDENT_NOT_FOUND")
 
 
